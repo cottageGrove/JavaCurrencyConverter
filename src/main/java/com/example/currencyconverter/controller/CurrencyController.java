@@ -8,14 +8,20 @@ import com.example.currencyconverter.service.response.ExchangeResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/exchange")
+@RequestMapping("/api")
 public class CurrencyController {
 
     private final ExchangeRateService exchangeRateService;
+
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity get() {
+        return ResponseEntity.ok("Welcome to the currency exchange api!");
+    }
 
     @GetMapping("/convertValue")
     public ResponseEntity getConvertedCurrency(@RequestParam String sourceCurrency,
